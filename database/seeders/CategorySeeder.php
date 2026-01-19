@@ -17,6 +17,8 @@ class CategorySeeder extends Seeder
             ['name' => 'Notebook'],
             ['name' => 'Smartphone'],
             ['name' => 'Accessories'],
+            ['name' => 'Televisions'],
+            ['name' => 'Wearables'],
         ]);
     }
 }

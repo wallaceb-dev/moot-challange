@@ -14,9 +14,11 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         Brand::insert([
-            ['nome' => 'Apple'],
-            ['nome' => 'Samsung'],
-            ['nome' => 'Dell'],
+            ['name' => 'Apple'],
+            ['name' => 'Samsung'],
+            ['name' => 'Dell'],
+            ['name' => 'LG'],
+            ['name' => 'Microsoft'],
         ]);
     }
 }

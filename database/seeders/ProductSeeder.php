@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Monolog\Processor\IntrospectionProcessor;
 
 class ProductSeeder extends Seeder
 {
@@ -15,37 +15,51 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $apple = Brand::where('nome', 'Apple')->first();
-        $samsung = Brand::where('nome', 'Samsung')->first();
-        $dell = Brand::where('nome', 'Dell')->first();
+        $apple = Brand::where('name', 'Apple')->first();
+        $samsung = Brand::where('name', 'Samsung')->first();
+        $dell = Brand::where('name', 'Dell')->first();
+        $lg = Brand::where('name', 'LG')->first();
+        $microsoft = Brand::where('name', 'Microsoft')->first();
 
-        $notebook = Category::where('nome', 'Notebook')->first();
-        $smartphone = Category::where('nome', 'Smartphone')->first();
-        $accessories = Category::where('nome', 'Accessories')->first();
+        $notebook = Category::where('name', 'Notebook')->first();
+        $smartphone = Category::where('name', 'Smartphone')->first();
+        $accessories = Category::where('name', 'Accessories')->first();
+        $televisions = Category::where('name', 'Televisions')->first();
+        $wearables = Category::where('name', 'Wearables')->first();
 
         Product::create([
-            'nome' => 'MacBook Pro',
-            'marca_id' => $apple->id,
+            'name' => 'TV 4K UHD 55"',
+            'brand_id' => $lg->id,
+        ])->categories()->attach([$televisions->id]);
+
+        Product::create([
+            'name' => 'Headphones Pro',
+            'brand_id' => $microsoft->id,
+        ])->categories()->attach([$wearables->id, $accessories->id]);
+
+        Product::create([
+            'name' => 'MacBook Pro',
+            'brand_id' => $apple->id,
         ])->categories()->attach([$notebook->id]);
 
         Product::create([
-            'nome' => 'iPhone 15',
-            'marca_id' => $apple->id,
+            'name' => 'iPhone 15',
+            'brand_id' => $apple->id,
         ])->categories()->attach([$smartphone->id]);
 
         Product::create([
-            'nome' => 'Galaxy S24',
-            'marca_id' => $samsung->id,
+            'name' => 'Galaxy S24',
+            'brand_id' => $samsung->id,
         ])->categories()->attach([$smartphone->id]);
 
         Product::create([
-            'nome' => 'Dell XPS 13',
-            'marca_id' => $dell->id,
+            'name' => 'Dell XPS 13',
+            'brand_id' => $dell->id,
         ])->categories()->attach([$notebook->id]);
 
         Product::create([
-            'nome' => 'USB-C Charger',
-            'marca_id' => $samsung->id,
+            'name' => 'USB-C Charger',
+            'brand_id' => $samsung->id,
         ])->categories()->attach([$accessories->id]);
     }
 }
